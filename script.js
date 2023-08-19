@@ -12,7 +12,7 @@ window.onload = function() {
 	
 	var button = document.createElement("button");
 	button.className = "button";
-	button.textContent = "Farbe ändern";
+	button.textContent = "Hintergrund";
 	button.addEventListener("click", onButtonClick);
 	document.body.appendChild(button);
 };
