@@ -2,25 +2,28 @@ var isDragging = false;
 var mouseOffset = { x: 0, y: 0 };
 
 window.onload = function() {
-	var titleBar = document.getElementById("title-bar");
-	titleBar.addEventListener("mousedown", onMouseDown);
+	var titleBars = document.querySelectorAll(".title-bar");
+	titleBars.forEach(function(titleBar) {
+		titleBar.addEventListener("mousedown", onMouseDown);
+	});
 	document.addEventListener("mousemove", onMouseMove);
 	document.addEventListener("mouseup", onMouseUp);
 	
-	var closeButton = document.querySelector(".close-button");
-	closeButton.addEventListener("click", onCloseButtonClick);
+	var closeButtons = document.querySelectorAll(".close-button");
+	closeButtons.forEach(function(closeButton) {
+		closeButton.addEventListener("click", onCloseButtonClick);
+	});
 	
-	var button = document.createElement("button");
-	button.className = "button";
-	button.textContent = "Hintergrund";
-	button.addEventListener("click", onButtonClick);
-	document.body.appendChild(button);
+	var buttons = document.querySelectorAll(".button");
+	buttons.forEach(function(button) {
+		button.addEventListener("click", onButtonClick);
+	});
 };
 
 function onMouseDown(event) {
 	isDragging = true;
-	mouseOffset.x = event.clientX - parseInt(window.getComputedStyle(document.getElementById("window")).left);
-	mouseOffset.y = event.clientY - parseInt(window.getComputedStyle(document.getElementById("window")).top);
+	mouseOffset.x = event.clientX - parseInt(window.getComputedStyle(event.target.parentNode).left);
+	mouseOffset.y = event.clientY - parseInt(window.getComputedStyle(event.target.parentNode).top);
 }
 
 function onMouseMove(event) {
@@ -28,8 +31,8 @@ function onMouseMove(event) {
 		var x = event.clientX - mouseOffset.x;
 		var y = event.clientY - mouseOffset.y;
 
-		document.getElementById("window").style.left = x + "px";
-		document.getElementById("window").style.top = y + "px";
+		event.target.parentNode.style.left = x + "px";
+		event.target.parentNode.style.top = y + "px";
 	}
 }
 
@@ -38,7 +41,7 @@ function onMouseUp(event) {
 }
 
 function onCloseButtonClick(event) {
-	document.getElementById("window").style.display = "none";
+	event.target.parentNode.parentNode.style.display = "none";
 }
 
 function onButtonClick(event) {
@@ -72,8 +75,6 @@ function onButtonClick(event) {
 	popup.style.left = "50%";
 	popup.style.transform = "translateX(-50%)";
 }
-
-
 
 function onPopupOkButtonClick(event) {
 	var input = document.querySelector(".popup input");
