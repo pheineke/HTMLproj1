@@ -66,7 +66,14 @@ function onButtonClick(event) {
 	popup.appendChild(buttonCancel);
 	
 	document.body.appendChild(popup);
+	
+	popup.style.position = "absolute";
+	popup.style.bottom = "10px";
+	popup.style.left = "50%";
+	popup.style.transform = "translateX(-50%)";
 }
+
+
 
 function onPopupOkButtonClick(event) {
 	var input = document.querySelector(".popup input");
