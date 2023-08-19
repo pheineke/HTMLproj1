@@ -1,120 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mein Fenster</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: Arial, sans-serif;
-			background-color: #000000;
-		}
-		.window {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 400px;
-			height: 300px;
-			background-color: #fff;
-			border: 1px solid #ccc;
-			box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-			overflow: hidden;
-		}
-		.window .title-bar {
-			position: relative;
-			height: 30px;
-			background-color: #f5f5f5;
-			border-bottom: 1px solid #ccc;
-			cursor: move;
-		}
-		.window .title-bar .title {
-			position: absolute;
-			top: 5px;
-			left: 10px;
-			font-weight: bold;
-		}
-		.window .title-bar .close-button {
-			position: absolute;
-			top: 5px;
-			right: 10px;
-			width: 16px;
-			height: 16px;
-			background-image: url('close.png');
-			background-repeat: no-repeat;
-			background-size: contain;
-			cursor: pointer;
-		}
-		iframe {
-			width: 100%;
-			height: calc(100% - 30px);
-			border: none;
-		}
-		
-		.button {
-			position: fixed;
-			bottom: 10px;
-			left: 10px;
-			padding: 10px;
-			background-color: #494949;
-			color: #fff;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-	</style>
-	<script>
-		var isDragging = false;
-		var mouseOffset = { x: 0, y: 0 };
-
-		window.onload = function() {
-			var titleBar = document.getElementById("title-bar");
-			titleBar.addEventListener("mousedown", onMouseDown);
-			document.addEventListener("mousemove", onMouseMove);
-			document.addEventListener("mouseup", onMouseUp);
-			
-			var button = document.createElement("button");
-			button.innerHTML = "Farbe ändern";
-			button.className = "button";
-			button.addEventListener("click", onButtonClick);
-			
-			document.body.appendChild(button);
-		};
-
-		function onMouseDown(e) {
-			isDragging = true;
-			mouseOffset.x = e.clientX - parseInt(window.getComputedStyle(document.getElementById("window")).left);
-			mouseOffset.y = e.clientY - parseInt(window.getComputedStyle(document.getElementById("window")).top);
-		}
-
-		function onMouseMove(e) {
-			if (isDragging) {
-				document.getElementById("window").style.left = (e.clientX - mouseOffset.x) + "px";
-				document.getElementById("window").style.top = (e.clientY - mouseOffset.y) + "px";
-			}
-		}
-
-		function onMouseUp(e) {
-			isDragging = false;
-		}
-		
-		function onButtonClick() {
-			var color = prompt("Geben Sie den HEX-Code für die neue Hintergrundfarbe ein:");
-			
-			if (color) {
-				document.body.style.backgroundColor = color;
-			}
-		}
-	</script>
+	<title>Home</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="script.js"></script>
 </head>
 <body>
 	<div id="window" class="window">
 		<div id="title-bar" class="title-bar">
-			<div class="title">Mein Fenster</div>
+			<div class="title">Quota</div>
 			<div class="close-button"></div>
 		</div>
 		
-		<iframe src="https://www.example.com"></iframe>
+		<iframe src="https://quota.wohnheim.uni-kl.de"></iframe>
 	</div>
 </body>
 </html>
